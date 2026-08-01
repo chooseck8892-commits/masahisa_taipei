@@ -87,32 +87,36 @@ img,svg{max-width:100%}
 :focus-visible{outline:2px solid var(--wine);outline-offset:3px}
 .hidden{display:none !important}
 
-/* ── 管理面板 ───────────────── */
+/* ── 內部管理（頁尾、縮小、預設收合）───────────────── */
+.admin-gate{
+  margin-top:22px;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;
+  color:#A7AEB3;cursor:pointer;user-select:none;text-align:center;padding:4px 10px}
+.admin-gate:hover{color:var(--iron-2)}
 .admin{
-  width:100%;max-width:700px;background:var(--iron);color:#EDEFF0;
-  border-radius:3px;padding:14px 16px;font-family:var(--mono);font-size:12.5px;
-}
-.admin h2{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
-  color:#E8A6B2;font-weight:600;margin-bottom:3px}
-.admin p{font-size:11.5px;color:#B4BCC1;line-height:1.55;margin-bottom:11px}
-.admin .row{display:flex;flex-wrap:wrap;gap:7px}
+  width:100%;max-width:520px;background:var(--iron);color:#EDEFF0;
+  border-radius:3px;padding:10px 12px;font-family:var(--mono);font-size:11px;
+  margin-top:6px}
+.admin h2{font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  color:#E8A6B2;font-weight:600;margin-bottom:2px}
+.admin p{font-size:10px;color:#B4BCC1;line-height:1.5;margin-bottom:8px}
+.admin .row{display:flex;flex-wrap:wrap;gap:6px}
 .admin input,.admin select{
-  flex:1 1 180px;min-width:0;background:#2A3136;color:#EDEFF0;
-  border:1px solid #566067;border-radius:2px;padding:9px 11px;font:inherit;font-size:12.5px}
+  flex:1 1 150px;min-width:0;background:#2A3136;color:#EDEFF0;
+  border:1px solid #566067;border-radius:2px;padding:7px 9px;font:inherit;font-size:11px}
 .admin button{
   flex:0 0 auto;background:var(--wine-2);color:#fff;border:0;border-radius:2px;
-  padding:9px 20px;font:inherit;font-weight:700;letter-spacing:.05em;cursor:pointer}
+  padding:7px 14px;font:inherit;font-size:11px;font-weight:700;letter-spacing:.04em;cursor:pointer}
 .admin button:hover{background:#A82C47}
-.admin .msg{margin-top:8px;font-size:11.5px;min-height:16px}
+.admin .msg{margin-top:6px;font-size:10px;min-height:14px}
 .admin .msg.err{color:#F0A08E}
 .admin .msg.ok{color:#8FD3AE}
 .admin .warn{
-  margin-top:9px;padding:8px 10px;background:#2A3136;
-  border-left:3px solid #E8A6B2;font-size:11px;line-height:1.6;color:#D8B4BB}
+  margin-top:7px;padding:6px 8px;background:#2A3136;
+  border-left:3px solid #E8A6B2;font-size:9.5px;line-height:1.55;color:#D8B4BB}
 .admin .link{
-  margin-top:9px;display:none;gap:7px;flex-wrap:wrap;align-items:center;
-  background:#2A3136;border:1px dashed #566067;padding:8px 10px;
-  font-size:10.5px;word-break:break-all;color:#B4BCC1}
+  margin-top:7px;display:none;gap:6px;flex-wrap:wrap;align-items:center;
+  background:#2A3136;border:1px dashed #566067;padding:6px 8px;
+  font-size:9.5px;word-break:break-all;color:#B4BCC1}
 .admin .link.on{display:flex}
 .admin .link b{color:#EDEFF0;font-weight:600}
 
@@ -305,26 +309,6 @@ img,svg{max-width:100%}
 </head>
 <body>
 
-<!-- ② 管理面板 -->
-<section class="admin" id="admin">
-  <h2>Internal · 主管專屬連結產生器</h2>
-  <p>輸入密碼後選擇主管，按下「產生專屬文宣」。產生後的連結內容固定，收到的人無法更改。</p>
-  <div class="row" id="step-pw">
-    <input type="password" id="pw" placeholder="請輸入密碼" autocomplete="off">
-    <button id="btn-pw">解鎖</button>
-  </div>
-  <div class="row hidden" id="step-pick">
-    <select id="pick"></select>
-    <button id="btn-go">產生專屬文宣</button>
-  </div>
-  <div class="msg" id="admin-msg"></div>
-  <div class="warn hidden" id="admin-warn"></div>
-  <div class="link" id="admin-link">
-    <b>專屬連結</b><span id="link-text"></span>
-    <button id="btn-copy" style="padding:5px 11px;font-size:10.5px">複製</button>
-  </div>
-</section>
-
 <!-- ③ 文宣本體 -->
 <main class="sheet" id="sheet">
 
@@ -457,9 +441,32 @@ img,svg{max-width:100%}
 <div class="actions" id="actions">
   <button id="btn-jpg">下載 JPEG 圖檔</button>
   <button id="btn-share" class="ghost">分享</button>
-  <button id="btn-back" class="ghost hidden">重選主管</button>
 </div>
 <div class="toast" id="toast"></div>
+
+<!-- ⑤ 內部管理（預設收合，位於頁尾）-->
+<div class="admin-gate" id="admin-gate">⚙ 內部管理</div>
+<!-- ② 管理面板 -->
+<section class="admin hidden" id="admin">
+  <h2>Internal · 主管專屬連結產生器</h2>
+  <p>輸入密碼後選擇主管，按下「產生專屬文宣」。產生後的連結內容固定，收到的人無法更改。</p>
+  <div class="row" id="step-pw">
+    <input type="password" id="pw" placeholder="請輸入密碼" autocomplete="off">
+    <button id="btn-pw">解鎖</button>
+  </div>
+  <div class="row hidden" id="step-pick">
+    <select id="pick"></select>
+    <button id="btn-go">產生專屬文宣</button>
+  </div>
+  <div class="msg" id="admin-msg"></div>
+  <div class="warn hidden" id="admin-warn"></div>
+  <div class="link" id="admin-link">
+    <b>專屬連結</b><span id="link-text"></span>
+    <button id="btn-copy" style="padding:5px 11px;font-size:10.5px">複製</button>
+  </div>
+</section>
+
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
@@ -678,7 +685,7 @@ img,svg{max-width:100%}
   function lockTo(m, pushUrl){
     apply(m);
     $("admin").classList.add("hidden");
-    $("btn-back").classList.remove("hidden");
+    if (!pushUrl) $("admin-gate").classList.add("hidden");  // 由專屬連結開啟：連開關也不顯示
     if (pushUrl){ try{ history.replaceState(null,"","?m="+encodeURIComponent(m.id)); }catch(e){} }
     window.scrollTo({top:0,behavior:"smooth"});
   }
@@ -713,11 +720,8 @@ img,svg{max-width:100%}
     }).catch(function(){});
   });
 
-  $("btn-back").addEventListener("click", function(){
-    $("admin").classList.remove("hidden");
-    $("btn-back").classList.add("hidden");
-    try{ history.replaceState(null,"",window.location.pathname); }catch(e){}
-    window.scrollTo({top:0,behavior:"smooth"});
+  $("admin-gate").addEventListener("click", function(){
+    $("admin").classList.toggle("hidden");
   });
 
   /* ---------- 匯出 / 分享 ---------- */
