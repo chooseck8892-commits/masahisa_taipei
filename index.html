@@ -685,7 +685,7 @@ img,svg{max-width:100%}
   function lockTo(m, pushUrl){
     apply(m);
     $("admin").classList.add("hidden");
-    if (!pushUrl) $("admin-gate").classList.add("hidden");  // 由專屬連結開啟：連開關也不顯示
+   
     if (pushUrl){ try{ history.replaceState(null,"","?m="+encodeURIComponent(m.id)); }catch(e){} }
     window.scrollTo({top:0,behavior:"smooth"});
   }
