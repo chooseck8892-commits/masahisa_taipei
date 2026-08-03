@@ -218,10 +218,12 @@ img,svg{max-width:100%}
   border:1px solid #CDD2D6;border-radius:2px;background:var(--grey-2);color:var(--ink)}
 .sv input:focus{outline:none;border-color:var(--wine);background:#FFF}
 .sv input.bad{border-color:#C0392B;background:#FDF3F2}
-.opts{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+.opts{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
 .opt-c{border:1px solid #CDD2D6;background:var(--grey-2);color:#3A4046;
-  padding:6px 11px;font-size:12.5px;letter-spacing:.02em;border-radius:2px;
+  padding:5px 9px;font-size:12px;letter-spacing:.02em;border-radius:2px;
   cursor:pointer;user-select:none}
+.opts.dense{gap:4px}
+.opts.dense .opt-c{padding:4px 8px;font-size:11.5px}
 .opt-c.on{border-color:var(--wine);background:var(--wine);color:#FFF}
 .oth{display:none;margin-top:6px}
 .oth.on{display:block}
@@ -239,34 +241,34 @@ img,svg{max-width:100%}
 .sv-done p{font-size:12.5px;color:#6C757B;margin-top:6px}
 
 /* 聯絡人 + 據點 */
-.card{padding:20px 24px 20px}
-.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.card{padding:16px 24px 16px}
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
 .card-eyebrow{font-family:var(--mono);font-size:9.5px;letter-spacing:.24em;
   color:var(--iron-2);text-transform:uppercase}
-.who{font-family:var(--serif);font-size:25px;font-weight:900;letter-spacing:.09em;
-  line-height:1.2;margin-top:7px}
-.role{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
-  color:var(--iron-2);margin-top:5px}
-.tel{display:inline-flex;align-items:center;gap:8px;margin-top:10px;
+.who{font-family:var(--serif);font-size:23px;font-weight:900;letter-spacing:.09em;
+  line-height:1.2;margin-top:5px}
+.role{font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+  color:var(--iron-2);margin-top:3px}
+.tel{display:inline-flex;align-items:center;gap:8px;margin-top:7px;
   font-family:var(--mono);font-size:17px;font-weight:600;letter-spacing:.08em;
   color:var(--ink);text-decoration:none}
-.portrait{margin-top:7px;line-height:0}
+.portrait{margin-top:4px;line-height:0}
 .portrait.off{display:none}
 .portrait img{display:block;width:100%;max-width:210px;height:auto}
 
-.locs{display:grid;grid-template-columns:1fr;gap:9px}
+.locs{display:grid;grid-template-columns:1fr;gap:7px}
 .loc{display:block;text-decoration:none;border:1px solid #DDE0E3;background:var(--grey-2)}
 .loc:hover{border-color:var(--wine);background:#FCF8F9}
 .loc-map{line-height:0;border-bottom:1px solid #DDE0E3}
 .loc-map svg{display:block;width:100%;height:auto}
-.loc-body{padding:8px 10px 9px}
+.loc-body{padding:6px 9px 7px}
 .loc-label{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;
   color:var(--wine);font-weight:700}
-.loc-addr{font-size:12px;line-height:1.55;color:#3A4046;margin-top:4px}
+.loc-addr{font-size:12px;line-height:1.5;color:#3A4046;margin-top:3px}
 .loc-go{font-family:var(--mono);font-size:9px;letter-spacing:.1em;
-  color:var(--iron-3);margin-top:5px}
+  color:var(--iron-3);margin-top:3px}
 
-.sign{margin-top:11px;font-family:var(--serif);font-size:13px;
+.sign{margin-top:8px;font-family:var(--serif);font-size:13px;
   letter-spacing:.06em;color:#4A5257;line-height:1.6}
 .foot{background:var(--iron);color:#A3ACB2;font-family:var(--mono);
   font-size:9px;letter-spacing:.2em;text-align:center;padding:9px}
@@ -541,8 +543,8 @@ img,svg{max-width:100%}
   var OPTS = {
     job:    ["負責人 / 老闆","總經理 / 副總","廠長 / 生產主管","採購 / 資材","工程師 / 技師","業務 / 專案","其他"],
     ind:    ["水電工程營造","環境工程","景觀設計","五金批發","水電材料批發","營建產業","農機電機","機械設備","製造業","一般家庭","其他"],
-    brand:  ["東元 TECO","大同","士林電機","ABB","SIEMENS","川源","大井 HCP","木川","九如","葛蘭富","荏原 EBARA","沒有特別偏好"],
-    equip:  ["感應馬達","防爆馬達","變頻馬達","減速機","沉水泵","離心泵","化學泵","污水泵","鼓風機","抽送風機","控制盤","變頻器"],
+    brand:  ["大井","木川","正久","立軒","川源","川利","春井","九如","卓霖","東元","大同","光泉","東力","利茗","雙燕","風樂","斑馬","豪威","統賀","順光","鶴見","河見","物理","三菱","葛蘭富"],
+    equip:  ["感應馬達","減速機","變頻器","家用泵浦","污水污物泵浦","高速渦流泵浦","多段式離心泵浦","工事泵浦","大樓泵浦","深井泵浦","砂輪機布輪機","空壓機","噴霧機","高壓清洗機","吸排風扇","工業扇類","家用扇類","抽送風機","鼓風機","控制盤元件"],
     strong: ["交期快","備品庫存齊","維修技術扎實","價格合理","願意到現場","售後負責","選型建議專業","老字號信任感"],
     improve:["24H 緊急維修","到廠檢測診斷","備品調度速度","報價回覆速度","線上下單查詢","定期保養合約","技術教育訓練","物流與安裝"],
     bless:  ["加油，北部見！","一定會愈做愈好","有需要一定找你","佩服這份勇氣","老朋友挺你","服務好，介紹給朋友"]
@@ -554,6 +556,7 @@ img,svg{max-width:100%}
     Array.prototype.forEach.call(boxes, function(box){
       var q = box.getAttribute("data-q"), mode = box.getAttribute("data-mode");
       picked[q] = [];
+      if (OPTS[q].length > 14) box.classList.add("dense");
       OPTS[q].forEach(function(v){
         var b = document.createElement("span");
         b.className = "opt-c"; b.textContent = v;
@@ -732,10 +735,15 @@ img,svg{max-width:100%}
     if (wasOpen){ $("cta").classList.remove("open"); $("sv-toggle").firstChild.textContent = "展開填寫"; }
     var p = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
     return p.catch(function(){}).then(function(){
+      /* 以 1000px 寬的桌機版重排後截圖：比例貼近 A4，減少左右留白 */
       return html2canvas($("sheet"), {
-        scale: Math.min(3,(window.devicePixelRatio||1)*2),
+        scale: 2.4,
         backgroundColor:"#FFFFFF", useCORS:true, logging:false,
-        windowWidth: document.documentElement.scrollWidth
+        windowWidth: 1100,
+        onclone: function(doc){
+          var s = doc.getElementById("sheet");
+          if (s){ s.style.width = "1000px"; s.style.maxWidth = "1000px"; }
+        }
       });
     });
   }
@@ -743,7 +751,7 @@ img,svg{max-width:100%}
 
   /* A4 直式（300dpi = 2480×3508）：等比縮放置中，白底、不超出範圍 */
   function toA4(src){
-    var A4W = 2480, A4H = 3508, M = 90;
+    var A4W = 2480, A4H = 3508, M = 56;
     var k = Math.min((A4W - M*2) / src.width, (A4H - M*2) / src.height);
     var w = Math.round(src.width  * k),
         h = Math.round(src.height * k);
