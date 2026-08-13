@@ -30,7 +30,7 @@ const CONFIG = {
 
   // given：可選。若自動取名不正確（複姓、雙名等），在此手動指定。
   managers: [
-    { id:"ceo",   name:"洪均緯", given:"", title:"總經理",       phone:"0933-050970" },
+    { id:"ceo",   name:"洪均緯", given:"Vincent 均緯", title:"總經理",       phone:"0933-050970" },
     { id:"mgmt",  name:"洪妙芬", given:"", title:"管理部 經理",   phone:"0933-406902" },
     { id:"tech",  name:"洪立軒", given:"", title:"技術部 主任",   phone:"0955-749349" },
     { id:"sales", name:"洪巍",   given:"", title:"業務部 經理",   phone:"0923-313190" },
@@ -341,11 +341,11 @@ img,svg{max-width:100%}
   </section>
 
   <section class="letter">
-    <p class="salute">各位人生朋友、合作夥伴：</p>
-    <p>我是<span id="m-given">均緯</span>，九月，正久電機廠台北分公司正式開幕營運。</p>
-    <p>從 1972 年到現在，我們在台中做的始終是同一件事——讓馬達轉得穩、水泵送得順、風機吹得久；壞了，修得回來。五十四年，始終堅持且不斷提升服務能力。</p>
-    <p>這次北上，不只是多開一間公司。我們把服務、把產品、把五十四年練出來的專業維修，完整複製到三重。<strong>北部的客戶能夠享受更即時的正久服務，更不必為了一顆馬達停產兩天。</strong></p>
-    <p>在傳產喊冷、成本喊漲的今天談擴點，是需要一點勇氣的。我們仍然決定往前走——因為機器不會等景氣，客戶的產線也不會，正久更是拼盡全力幾乎全年守護在側。</p>
+    <p class="salute">各位親愛的朋友、夥伴們：</p>
+    <p>我是 <span id="m-given">Vincent 均緯</span>，九月份，正久電機廠台北分公司將正式開始營運。</p>
+    <p>從 1972 年到現在，我們始終如一做著同一件事——讓馬達轉得穩、水泵送得順、風機吹得久；壞了，修得回來。五十四年，始終堅持且不斷提升服務能力。</p>
+    <p>這次北上我們把產品規劃、銷售、售後維修串成一條龍服務，把五十四年練出來的專業維修，完整複製到三重。<strong>讓北部的客戶能夠享受更即時的正久服務，更不必為了一顆馬達停產、停水兩天。</strong></p>
+    <p>在傳產喊冷、成本喊漲的今天談擴點，是需要一點勇氣的。<br>在這艱困的時代，想藉由各位把這好的傳統服務推薦給自己與身邊的朋友！</p>
   </section>
 
   <section class="sectors">
@@ -404,6 +404,9 @@ img,svg{max-width:100%}
         <div class="sv-q"><div class="sv-label">想給 <span class="bless-name">洪均緯</span> 的一句鼓勵<span class="opt">點選或自填，可並用</span></div>
           <div class="opts" data-q="bless" data-mode="many"></div>
           <input type="text" id="f-bless" placeholder="也可以自己寫一句…"></div>
+
+        <div class="sv-q"><div class="sv-label">會想把我們推薦給誰？<span class="opt">選填</span></div>
+          <input type="text" id="f-refer" placeholder="例如：同業朋友、水電師傅、某某公司…"></div>
 
         <button class="sv-send" id="sv-send" type="button">送出問卷</button>
         <div class="sv-msg" id="sv-msg"></div>
@@ -624,6 +627,7 @@ img,svg{max-width:100%}
       brands: withOther("brand"), equipment: withOther("equip"),
       strengths: withOther("strong"), improvements: withOther("improve"),
       blessing: bless.join("、"),
+      refer: $("f-refer").value.trim(),
       page: window.location.href
     };
   }
