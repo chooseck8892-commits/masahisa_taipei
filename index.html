@@ -224,6 +224,11 @@ img,svg{max-width:100%}
   cursor:pointer;user-select:none}
 .opts.dense{gap:4px}
 .opts.dense .opt-c{padding:4px 8px;font-size:11.5px}
+.opts.grouped{display:block}
+.grp-t{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--wine);
+  font-weight:700;border-bottom:1px solid #E4C6CD;padding-bottom:3px;margin-top:11px}
+.grp-t:first-child{margin-top:0}
+.grp-r{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
 .opt-c.on{border-color:var(--wine);background:var(--wine);color:#FFF}
 .oth{display:none;margin-top:6px}
 .oth.on{display:block}
@@ -546,11 +551,19 @@ img,svg{max-width:100%}
   var OPTS = {
     job:    ["負責人 / 老闆","總經理 / 副總","廠長 / 生產主管","採購 / 資材","工程師 / 技師","業務 / 專案","其他"],
     ind:    ["水電工程營造","環境工程","景觀設計","五金批發","水電材料批發","營建產業","農機電機","機械設備","製造業","一般家庭","其他"],
-    brand:  ["大井","木川","正久","立軒","川源","川利","春井","九如","卓霖","東元","大同","光泉","東力","利茗","雙燕","風樂","斑馬","豪威","統賀","順光","鶴見","河見","物理","三菱","葛蘭富"],
-    equip:  ["感應馬達","減速機","變頻器","家用泵浦","污水污物泵浦","高速渦流泵浦","多段式離心泵浦","工事泵浦","大樓泵浦","深井泵浦","砂輪機布輪機","空壓機","噴霧機","高壓清洗機","吸排風扇","工業扇類","家用扇類","抽送風機","鼓風機","控制盤元件"],
+    brand:  ["大井","木川","正久","立軒","川源","川利","春井","九如","卓霖","東元","大同","光泉","東力","利茗","雙燕","風樂","斑馬","豪威","統賀","順光","鶴見","河見","物理","三菱","葛蘭富","其他"],
+    equip:  ["AC感應馬達","防爆馬達","變頻馬達","減速機","沉水泵浦","家用泵浦","污水污物泵浦","高速渦流泵浦","多段式離心泵浦","工事泵浦","大樓泵浦","深井泵浦","吸排風扇","工業扇類","家用扇類","水冷扇","空調扇","抽送風機","鼓風機","變頻器","控制盤元件","砂輪機布輪機","空壓機","噴霧機","高壓清洗機"],
     strong: ["交期快","備品庫存齊","維修技術扎實","價格合理","願意到現場","售後負責","選型建議專業","老字號信任感"],
     improve:["24H 緊急維修","到廠檢測診斷","備品調度速度","報價回覆速度","線上下單查詢","定期保養合約","技術教育訓練","物流與安裝"],
     bless:  ["加油，北部見！","一定會愈做愈好","有需要一定找你","佩服這份勇氣","老朋友挺你","服務好，介紹給朋友"]
+  };
+  var GROUPS = {
+    equip: [
+      { label:"馬達",   items:["AC感應馬達","防爆馬達","變頻馬達","減速機"] },
+      { label:"泵浦",   items:["沉水泵浦","家用泵浦","污水污物泵浦","高速渦流泵浦","多段式離心泵浦","工事泵浦","大樓泵浦","深井泵浦"] },
+      { label:"風機",   items:["吸排風扇","工業扇類","家用扇類","水冷扇","空調扇","抽送風機","鼓風機"] },
+      { label:"其他設備", items:["變頻器","控制盤元件","砂輪機布輪機","空壓機","噴霧機","高壓清洗機"] }
+    ]
   };
   var picked = {};   // { q: [values] }
 
@@ -560,14 +573,15 @@ img,svg{max-width:100%}
       var q = box.getAttribute("data-q"), mode = box.getAttribute("data-mode");
       picked[q] = [];
       if (OPTS[q].length > 14) box.classList.add("dense");
-      OPTS[q].forEach(function(v){
+
+      function makeChip(v){
         var b = document.createElement("span");
         b.className = "opt-c"; b.textContent = v;
         b.setAttribute("role","button"); b.setAttribute("tabindex","0");
         function flip(){
           if (mode === "one"){
             picked[q] = (picked[q][0] === v) ? [] : [v];
-            Array.prototype.forEach.call(box.children, function(c){
+            Array.prototype.forEach.call(box.querySelectorAll(".opt-c"), function(c){
               c.classList.toggle("on", picked[q][0] === c.textContent);
             });
           } else {
@@ -584,8 +598,23 @@ img,svg{max-width:100%}
         b.addEventListener("keydown", function(e){
           if (e.key === "Enter" || e.key === " "){ e.preventDefault(); flip(); }
         });
-        box.appendChild(b);
-      });
+        return b;
+      }
+
+      if (GROUPS[q]){
+        box.classList.add("grouped");
+        GROUPS[q].forEach(function(g){
+          var t = document.createElement("div");
+          t.className = "grp-t"; t.textContent = g.label;
+          box.appendChild(t);
+          var row = document.createElement("div");
+          row.className = "grp-r";
+          g.items.forEach(function(v){ row.appendChild(makeChip(v)); });
+          box.appendChild(row);
+        });
+      } else {
+        OPTS[q].forEach(function(v){ box.appendChild(makeChip(v)); });
+      }
       // 複選題固定顯示「其他」輸入框（品牌/設備/優勢/服務）
       var o = $("o-"+q);
       if (o && mode === "many" && OPTS[q].indexOf("其他") < 0) o.classList.add("on");
