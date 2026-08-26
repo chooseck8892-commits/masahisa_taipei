@@ -221,29 +221,31 @@ img,svg{max-width:100%}
   padding:16px 16px 18px;margin-top:14px}
 .sv-q{margin-top:15px}
 .sv-q:first-child{margin-top:0}
-/* 推薦名單（獨立、緊湊、不收合）*/
-.refer{padding:13px 24px 14px;border-bottom:1px solid var(--hair);background:#FCF8F9}
-.refer-head{font-family:var(--serif);font-size:14.5px;font-weight:900;letter-spacing:.05em}
-.refer-head em{font-style:normal;background:var(--wine);color:#FFF;
-  padding:3px 10px;letter-spacing:.14em;display:inline-block}
-.refer-head span{font-family:var(--sans);font-weight:400;font-size:11px;
-  color:#8A6B71;margin-left:8px;letter-spacing:.02em}
-.refer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr auto;gap:6px;margin-top:8px}
-.refer-grid input{min-width:0;padding:8px 10px;font:inherit;font-size:12.5px;
-  border:1px solid #D8C3C8;border-radius:2px;background:#FFF;color:var(--ink)}
-.refer-grid input:focus{outline:none;border-color:var(--wine)}
-.refer-grid input.bad{border-color:#C0392B;background:#FDF3F2}
-.refer-grid button{padding:8px 15px;background:var(--wine);color:#FFF;border:0;
-  border-radius:2px;font:inherit;font-size:12.5px;font-weight:700;
-  letter-spacing:.06em;cursor:pointer;white-space:nowrap}
-.refer-grid button:hover{background:var(--wine-2)}
-.refer-grid button:disabled{opacity:.5;cursor:progress}
-.ref-msg{font-size:11.5px;min-height:15px;margin-top:5px;line-height:1.5}
-.ref-msg.err{color:#C0392B}
-.ref-msg.ok{color:#1E7A4E;font-weight:700}
 .sv-label{font-size:13px;font-weight:700;letter-spacing:.03em}
 .sv-label .req{color:var(--wine);margin-left:2px}
 .sv-label .opt{font-weight:400;font-size:11px;color:var(--iron-3);margin-left:6px}
+/* 推薦名單（獨立、緊湊、不收合）*/
+.refer{padding:10px 24px 11px;border-bottom:1px solid var(--hair);background:#FCF8F9}
+.refer-head{font-family:var(--serif);font-size:14px;font-weight:900;letter-spacing:.05em}
+.refer-head em{font-style:normal;background:var(--wine);color:#FFF;
+  padding:2px 9px;letter-spacing:.14em;display:inline-block}
+.refer-head span{font-family:var(--sans);font-weight:400;font-size:10.5px;
+  color:#8A6B71;margin-left:7px;letter-spacing:.02em}
+.refer-tbl{display:grid;grid-template-columns:1.7fr 1fr 1fr;gap:4px;margin-top:7px}
+.refer-tbl input{min-width:0;padding:6px 8px;font:inherit;font-size:12px;
+  border:1px solid #D8C3C8;border-radius:2px;background:#FFF;color:var(--ink)}
+.refer-tbl input:focus{outline:none;border-color:var(--wine)}
+.refer-tbl input.bad{border-color:#C0392B;background:#FDF3F2}
+.refer-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:6px}
+.refer-foot button{padding:6px 15px;background:var(--wine);color:#FFF;border:0;
+  border-radius:2px;font:inherit;font-size:12px;font-weight:700;
+  letter-spacing:.06em;cursor:pointer;white-space:nowrap;flex:0 0 auto}
+.refer-foot button:hover{background:var(--wine-2)}
+.refer-foot button:disabled{opacity:.5;cursor:progress}
+.ref-msg{font-size:11px;min-height:14px;line-height:1.4;flex:1 1 auto}
+.ref-msg.err{color:#C0392B}
+.ref-msg.ok{color:#1E7A4E;font-weight:700}
+
 .sv input[type=text],.sv input[type=tel]{
   width:100%;margin-top:6px;padding:9px 11px;font:inherit;font-size:14px;
   border:1px solid #CDD2D6;border-radius:2px;background:var(--grey-2);color:var(--ink)}
@@ -330,15 +332,14 @@ img,svg{max-width:100%}
   color:var(--wine);min-height:16px;text-align:center}
 
 @media (max-width:660px){
-  .plate-head,.hero,.letter,.sectors,.cta,.card{padding-left:20px;padding-right:20px}
+  .plate-head,.hero,.letter,.sectors,.refer,.cta,.card{padding-left:20px;padding-right:20px}
   .card-grid{gap:14px}
 }
 @media (max-width:520px){
-  .plate-head,.hero,.letter,.sectors,.cta,.card{padding-left:17px;padding-right:17px}
+  .plate-head,.hero,.letter,.sectors,.refer,.cta,.card{padding-left:17px;padding-right:17px}
   .card-grid{grid-template-columns:1fr;gap:16px}
-  .refer-grid{grid-template-columns:1fr 1fr}
-  .refer-grid input:first-child{grid-column:1/-1}
-  .refer-grid button{grid-column:1/-1}
+  .refer-tbl{grid-template-columns:1.4fr 1fr 1fr;gap:3px}
+  .refer-tbl input{font-size:11.5px;padding:6px 6px}
   .portrait img{max-width:186px}
   .spec-cell{padding-left:13px;padding-right:13px}
   .cta{gap:14px}
@@ -411,14 +412,22 @@ img,svg{max-width:100%}
   </section>
 
   <section class="refer">
-    <div class="refer-head"><em>推薦名單</em><span>推薦身邊需要的公司，正久直接去服務</span></div>
-    <div class="refer-grid">
-      <input type="text" id="f-refco" placeholder="推薦公司 / 商號名稱">
-      <input type="text" id="f-reftel" inputmode="tel" placeholder="電話">
-      <input type="text" id="f-refname" placeholder="聯絡人">
+    <div class="refer-head"><em>推薦名單</em><span>推薦三家，正久直接去服務</span></div>
+    <div class="refer-tbl">
+      <input type="text" id="f-refco1" placeholder="推薦公司 / 商號">
+      <input type="text" id="f-reftel1" inputmode="tel" placeholder="電話">
+      <input type="text" id="f-refname1" placeholder="聯絡人">
+      <input type="text" id="f-refco2" placeholder="推薦公司 / 商號">
+      <input type="text" id="f-reftel2" inputmode="tel" placeholder="電話">
+      <input type="text" id="f-refname2" placeholder="聯絡人">
+      <input type="text" id="f-refco3" placeholder="推薦公司 / 商號">
+      <input type="text" id="f-reftel3" inputmode="tel" placeholder="電話">
+      <input type="text" id="f-refname3" placeholder="聯絡人">
+    </div>
+    <div class="refer-foot">
+      <span class="ref-msg" id="ref-msg"></span>
       <button id="ref-send" type="button">送出推薦</button>
     </div>
-    <div class="ref-msg" id="ref-msg"></div>
   </section>
 
   <section class="cta" id="cta">
@@ -725,17 +734,27 @@ img,svg{max-width:100%}
     };
   }
 
-  /* ---------- 推薦名單（獨立送出，共用同一收單端點）---------- */
+  /* ---------- 推薦名單（三列；有填的列各自寫入一筆）---------- */
   $("ref-send").addEventListener("click", function(){
-    var msg = $("ref-msg");
-    var rc = $("f-refco").value.trim(),
-        rt = $("f-reftel").value.trim(),
-        rn = $("f-refname").value.trim();
-    $("f-refco").classList.toggle("bad", !rc);
-    $("f-reftel").classList.toggle("bad", !rt);
-    $("f-refname").classList.toggle("bad", !rn);
-    if (!rc || !rt || !rn){
-      msg.textContent = "推薦公司、電話、聯絡人三欄請填寫完整。";
+    var msg = $("ref-msg"), rows = [], hasErr = false;
+    [1,2,3].forEach(function(i){
+      var rc = $("f-refco"+i).value.trim(),
+          rt = $("f-reftel"+i).value.trim(),
+          rn = $("f-refname"+i).value.trim();
+      var used = !!(rc || rt || rn);            // 該列有動筆才檢查
+      var bad  = used && (!rc || !rt || !rn);   // 動了就三欄都要填
+      $("f-refco"+i).classList.toggle("bad", bad && !rc);
+      $("f-reftel"+i).classList.toggle("bad", bad && !rt);
+      $("f-refname"+i).classList.toggle("bad", bad && !rn);
+      if (bad) hasErr = true;
+      else if (used) rows.push({ rc:rc, rt:rt, rn:rn });
+    });
+    if (hasErr){
+      msg.textContent = "有填寫的那一列，公司、電話、聯絡人三欄都要填齊。";
+      msg.className = "ref-msg err"; return;
+    }
+    if (!rows.length){
+      msg.textContent = "請至少填寫一列推薦。";
       msg.className = "ref-msg err"; return;
     }
     if (!sheetReady()){
@@ -744,15 +763,20 @@ img,svg{max-width:100%}
     }
     var btn = this; btn.disabled = true;
     msg.textContent = "送出中…"; msg.className = "ref-msg";
-    var body = new URLSearchParams();
-    var data = { manager: current ? current.name : "", managerTitle: current ? current.title : "",
-                 refCompany: rc, refPhone: rt, refContact: rn, page: window.location.href };
-    Object.keys(data).forEach(function(k){ body.append(k, data[k]); });
-    fetch(CONFIG.sheetEndpoint.trim(), { method:"POST", mode:"no-cors", body: body })
+    var jobs = rows.map(function(r){
+      var body = new URLSearchParams();
+      var data = { manager: current ? current.name : "", managerTitle: current ? current.title : "",
+                   refCompany: r.rc, refPhone: r.rt, refContact: r.rn, page: window.location.href };
+      Object.keys(data).forEach(function(k){ body.append(k, data[k]); });
+      return fetch(CONFIG.sheetEndpoint.trim(), { method:"POST", mode:"no-cors", body: body });
+    });
+    Promise.all(jobs)
       .then(function(){
-        msg.textContent = "已收到推薦，感謝您！";
+        msg.textContent = "已收到 " + rows.length + " 筆推薦，感謝您！";
         msg.className = "ref-msg ok";
-        $("f-refco").value = ""; $("f-reftel").value = ""; $("f-refname").value = "";
+        [1,2,3].forEach(function(i){
+          $("f-refco"+i).value = ""; $("f-reftel"+i).value = ""; $("f-refname"+i).value = "";
+        });
       })
       .catch(function(){
         msg.textContent = "送出失敗，請確認網路後再試一次。";
